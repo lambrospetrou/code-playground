@@ -1,0 +1,66 @@
+/home/lambros/Desktop:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/dev:
+total 24
+drwxrwxr-x  6 lambros lambros 4096 Mar 16 02:12 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+drwxrwxr-x  4 lambros lambros 4096 Mar 16 22:34 github/
+drwxrwxr-x  3 lambros lambros 4096 Mar 16 02:11 git.lp.gs/
+drwxrwxr-x  4 lambros lambros 4096 Mar 16 01:24 go/
+drwxrwxr-x  3 lambros lambros 4096 Mar 17 18:30 tmp/
+
+/home/lambros/Documents:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/Downloads:
+total 323480
+drwxr-xr-x  2 lambros lambros      4096 Mar 16 02:01 ./
+drwxr-xr-x 30 lambros lambros      4096 Mar 17 18:29 ../
+-rw-rw-r--  1 lambros lambros 119905205 Mar 16 00:01 go1.10.linux-amd64.tar.gz
+-rw-rw-r--  1 lambros lambros  76791892 Mar 16 00:51 insync_1.4.3.37063-xenial_amd64.deb
+-rwxrwxr-x  1 lambros lambros      1812 Mar 16 02:01 linux-install-1.9.0.358.sh*
+-rwxrwxr-x  1 lambros lambros 119525412 Mar 16 00:36 racket-6.12-x86_64-linux.sh*
+-rw-rw-r--  1 lambros lambros   8243049 Mar 15 23:30 source-code-pro-2.030R-ro-1.050R-it.zip
+-rw-rw-r--  1 lambros lambros   6727777 Mar 15 23:30 source-sans-pro-2.020R-ro-1.075R-it.zip
+
+/home/lambros/Music:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/Pictures:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/Public:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/Team Drives:
+total 12
+drwx------  3 lambros lambros 4096 Mar 16 00:58 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+drwx------  2 lambros lambros 4096 Mar 16 00:58 lambrospower@gmail.com/
+
+/home/lambros/Templates:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
+
+/home/lambros/tmp:
+total 1568
+drwxrwxr-x  2 lambros lambros    4096 Mar 16 00:30 ./
+drwxr-xr-x 30 lambros lambros    4096 Mar 17 18:29 ../
+-rw-rw-r--  1 lambros lambros 1595408 Mar 16 00:30 get-pip.py
+
+/home/lambros/Videos:
+total 8
+drwxr-xr-x  2 lambros lambros 4096 Mar 14 23:24 ./
+drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
