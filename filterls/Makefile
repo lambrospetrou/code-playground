@@ -1,4 +1,4 @@
-.PHONY: filter-go filter-ex
+.PHONY: filter-go filter-ex clean run
 
 default: clean filter-go filter-ex
 
