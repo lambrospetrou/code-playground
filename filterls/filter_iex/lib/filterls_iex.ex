@@ -38,12 +38,6 @@ defmodule FilterlsIex do
   defp do_patterner(<<?\s::utf8, rest::binary>>, num, spaces),
     do: do_patterner(rest, num, spaces + 1)
 
-  defp do_patterner(<<?\t::utf8, ?\t::utf8, rest::binary>>, num, spaces),
-    do: do_patterner(<<?\t, rest>>, num, spaces)
-
-  defp do_patterner(<<?\t::utf8, rest::binary>>, num, spaces),
-    do: do_patterner(rest, num, spaces + 1)
-
   defp do_patterner(<<n::utf8, rest::binary>>, num, 1),
     do: do_patterner(rest, <<num::binary, n>>, 1)
 
