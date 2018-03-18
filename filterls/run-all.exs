@@ -12,7 +12,11 @@ defmodule FilterlsRunner do
   end
 
   def run() do
-    [{"filter-go", "filter-go"}, {"filter-ex 0", "filter-ex-pat"}, {"filter-ex 1", "filter-ex-split"}] 
+    [{"filter-go", "filter-go"},
+     {"filter-ex 0", "filter-ex-pat"},
+     {"filter-ex 1", "filter-ex-split"},
+     {"filter-racket", "filter-racket"},
+     {"filter-racket.rkt", "filter-racket.rkt"}]
     |> Enum.each(&runBinary/1)
   end
 
@@ -21,7 +25,7 @@ defmodule FilterlsRunner do
     files = String.Chars.to_string(:os.cmd('ls ./test-files')) |> String.split()
     files
     |> Enum.each(fn datafile ->
-      IO.puts("Processing #{bin} - #{datafile}")
+      IO.puts("Processing #{bin_output} - #{datafile}")
       :os.cmd(String.to_charlist("time ./build/#{bin} < ./test-files/#{datafile} > ./output/#{datafile}.#{bin_output}.txt"))
       |> IO.puts
     end)
