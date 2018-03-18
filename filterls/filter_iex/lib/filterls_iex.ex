@@ -30,12 +30,7 @@ defmodule FilterlsIex do
 
   defp do_patterner(<<>>, <<>>, 0), do: false
 
-  defp do_patterner(<<>>, n, 1) do
-    case Integer.parse(n) do
-      {num, _} when num > 0 -> true
-      _ -> false
-    end
-  end
+  defp do_patterner(<<>>, n, 1), do: is_valid(n)
 
   defp do_patterner(<<?\s::utf8, ?\s::utf8, rest::binary>>, num, spaces),
     do: do_patterner(<<?\s, rest::binary>>, num, spaces)
@@ -67,10 +62,13 @@ defmodule FilterlsIex do
   defp splitter([]), do: false
   defp splitter([_1 | []]), do: false
 
-  defp splitter([_1 | [c2 | _rest]]) do
-    case Integer.parse(c2) do
-      {num, _} when num > 0 -> true
+  defp splitter([_1 | [c2 | _rest]]), do: is_valid(c2)
+
+  defp is_valid(num_str) do
+    case Integer.parse(num_str) do
+      {num, _} when num > 10 -> true
       _ -> false
     end
   end
+
 end

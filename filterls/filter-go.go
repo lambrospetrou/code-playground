@@ -20,7 +20,7 @@ var splitter filterer = func(line string) bool {
 	segs := strings.Fields(line)
 	if len(segs) > 1 {
 		n, err := strconv.ParseUint(segs[1], 10, 64)
-		if err == nil && n > 0 {
+		if err == nil && n > 10 {
 			return true
 		}
 	}
