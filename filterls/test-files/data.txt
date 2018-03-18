@@ -8,7 +8,7 @@ total 24
 drwxrwxr-x  6 lambros lambros 4096 Mar 16 02:12 ./
 drwxr-xr-x 30 lambros lambros 4096 Mar 17 18:29 ../
 drwxrwxr-x  4 lambros lambros 4096 Mar 16 22:34 github/
-drwxrwxr-x  3 lambros lambros 4096 Mar 16 02:11 git.lp.gs/
+drwxrwxr-x  3 lambros lambros 4096 Mar 16 02:11 xxx.xx.xx/
 drwxrwxr-x  4 lambros lambros 4096 Mar 16 01:24 go/
 drwxrwxr-x  3 lambros lambros 4096 Mar 17 18:30 tmp/
 
