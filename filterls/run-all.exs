@@ -3,7 +3,7 @@ defmodule FilterlsRunner do
   def copyFile([filename]), do: copyFile([filename, 10])
   def copyFile([filename, times]) do
     b = File.read!(filename)
-
+    times = String.to_integer(times)
     File.open("#{filename}#{times}.txt", [:write], fn file ->
       Enum.each(1..times, fn _ ->
         IO.binwrite(file, b)
@@ -15,8 +15,8 @@ defmodule FilterlsRunner do
     [{"filter-go", "filter-go"},
      {"filter-ex 0", "filter-ex-pat"},
      {"filter-ex 1", "filter-ex-split"},
-     {"filter-racket", "filter-racket"},
-     {"filter-racket.rkt", "filter-racket.rkt"}]
+     {"filter-racket.rkt", "filter-racket.rkt"},
+     {"filter.py", "filter.py"}]
     |> Enum.each(&runBinary/1)
   end
 

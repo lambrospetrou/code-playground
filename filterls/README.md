@@ -8,8 +8,12 @@ The programs parse a text file that has the output of `ls ~/*` and in different 
 
 Tested with:
 
-**Go: 1.10+**
-**Elixir: 1.6.3**
+|Runtime|Version|
+|---|---|
+|Go|1.10|
+|Elixir|1.6.3|
+|Racket|6.12|
+|Python|3.5.2|
 
 ## Commands
 
