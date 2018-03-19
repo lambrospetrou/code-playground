@@ -8,13 +8,14 @@ clean:
 filter-go: clean
 	go build -o filter-go filter.go
 	mv filter-go build/
+	cp filter.go build/
 
 filter-ex: clean
 	cd filter_iex; MIX_ENV=prod mix escript.build
 	mv filter_iex/filter_iex build/filter-ex
 
 filter-racket: clean
-	cp filter-racket.rkt build/
+	cp filter.rkt build/
 	#raco exe --orig-exe filter-racket.rkt; mv filter-racket build/
 
 filter-py: clean

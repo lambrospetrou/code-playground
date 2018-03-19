@@ -36,7 +36,7 @@ The filtered output files are inside the `output/`
 In my benchmarks on T430 with 16GB ram and i5-3320M, the memory was constant and never exceeded more than few megabytes since all solutions are doing streaming of the input and output.
 
 ```
-1x = Go
+1x = Go (compiled, and `go run filter.go`)
 6x = Python
 20x = Racket
 85x = Elixir pattern matching
