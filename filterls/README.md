@@ -39,8 +39,8 @@ In my benchmarks on T430 with 16GB ram and i5-3320M, the memory was constant and
 1x = Go
 6x = Python
 20x = Racket
-100x = Elixir pattern matching
-200x = Elixir splitting
+85x = Elixir pattern matching
+180x = Elixir splitting
 ```
 
 So Go seems to be the fastest but with a bit more verbose code.
