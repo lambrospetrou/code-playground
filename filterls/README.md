@@ -37,9 +37,10 @@ In my benchmarks on T430 with 16GB ram and i5-3320M, the memory was constant and
 
 ```
 1x = Go
+6x = Python
+20x = Racket
 100x = Elixir pattern matching
 200x = Elixir splitting
 ```
 
-So Go seems to be super fast compared to Elixir for raw IO, but pattern matching is really an elegant way to write functions.
-
+So Go seems to be the fastest but with a bit more verbose code.
