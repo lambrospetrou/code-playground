@@ -1,6 +1,6 @@
 .PHONY: filter-go filter-ex filter-racket filter-py clean run
 
-default: clean filter-go filter-ex filter-racket filter-py
+default: clean filter-go filter-ex filter-racket filter-py filter-rb
 
 clean:
 	rm -rf build/ && mkdir -p build/
@@ -20,6 +20,9 @@ filter-racket: clean
 
 filter-py: clean
 	cp filter.py build/
+
+filter-rb: clean
+	cp filter.rb build/
 
 run:
 	rm -rf output/ && mkdir -p output

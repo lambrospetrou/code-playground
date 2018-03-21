@@ -14,6 +14,7 @@ Tested with:
 |Elixir|1.6.3|
 |Racket|6.12|
 |Python|3.5.2|
+|Ruby|2.3.1p112|
 
 ## Commands
 
@@ -37,6 +38,7 @@ In my benchmarks on T430 with 16GB ram and i5-3320M, the memory was constant and
 
 ```
 1x = Go (compiled, and `go run filter.go`)
+4.5x = Ruby
 6x = Python
 20x = Racket
 85x = Elixir pattern matching
