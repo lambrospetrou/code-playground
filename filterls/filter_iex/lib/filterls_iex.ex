@@ -7,7 +7,6 @@ defmodule FilterlsIex do
   If argv[0] == 1 use &splitter/1, otherwise use &patterner/1
   """
   def main([]), do: main(["0"])
-
   def main([what]) do
     if what == "1" do
       process(&splitter/1)
@@ -15,11 +14,25 @@ defmodule FilterlsIex do
       process(&patterner/1)
     end
   end
+  def main([what, datafile, outputfile]) do
+    if what == "1" do
+      process(&splitter/1, datafile, outputfile)
+    else
+      process(&patterner/1, datafile, outputfile)
+    end
+  end
 
   defp process(filterer) do
     IO.binstream(:stdio, :line)
     |> Stream.filter(filterer)
     |> Stream.into(IO.binstream(:stdio, :line))
+    |> Stream.run()
+  end
+
+  defp process(filterer, inputfile, outputfile) do
+    File.stream!(inputfile, read_ahead: 10_000_000)
+    |> Stream.filter(filterer)
+    |> Stream.into(File.stream!(outputfile, [:delayed_write]))
     |> Stream.run()
   end
 
