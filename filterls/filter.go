@@ -41,8 +41,7 @@ func fromStdIo() {
 }
 
 func process(i io.ReadCloser, o io.WriteCloser, f filterer) {
-	bufIn := bufio.NewReader(i)
-	in := bufio.NewScanner(bufIn)
+	in := bufio.NewScanner(i)
 	out := bufio.NewWriter(o)
 	for in.Scan() {
 		l := in.Text()
