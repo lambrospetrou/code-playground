@@ -1,6 +1,6 @@
-.PHONY: filter-go filter-ex filter-racket filter-py clean run
+.PHONY: filter-go filter-ex filter-racket filter-py filter-rs clean run
 
-default: clean filter-go filter-ex filter-racket filter-py filter-rb
+default: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs
 
 clean:
 	rm -rf build/ && mkdir -p build/
@@ -9,6 +9,9 @@ filter-go: clean
 	go build -o filter-go filter.go
 	mv filter-go build/
 	cp filter.go build/
+
+filter-rs: clean
+	rustc filter.rs -o build/filter-rs -O
 
 filter-ex: clean
 	cd filter_iex; MIX_ENV=prod mix escript.build
