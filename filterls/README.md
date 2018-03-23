@@ -15,6 +15,7 @@ Tested with:
 |Racket|6.12|
 |Python|3.5.2|
 |Ruby|2.3.1p112|
+|Rust|1.24.1|
 
 ## Commands
 
