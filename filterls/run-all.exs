@@ -1,8 +1,8 @@
 defmodule FilterlsRunner do
 
   def run() do
-    [#{"filter-go", "filter-go"},
-     {"filter.go", "filter.go"},
+    [{"filter-go", "filter-go"},
+     #{"filter.go", "filter.go"},
      {"filter-rs", "filter-rs"},
      #{"filter-ex 0", "filter-ex-pat"}, # No reason to run this. It is 10x slower than using files
      #{"filter-ex 1", "filter-ex-split"},

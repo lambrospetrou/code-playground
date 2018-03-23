@@ -38,7 +38,7 @@ In my benchmarks on Thinkpad T430 with 16GB ram and i5-3320M (running Xubuntu 16
 
 ```
 1x = Go (compiled, and `go run filter.go`)
-2x = Rust (compiled with `-O`)
+1x = Rust (compiled with `-O`)
 4.5x = Ruby
 6x = Python
 10x = Elixir pattern matching (`File.stream!`)
@@ -62,9 +62,9 @@ sys	0m2.477s
 
 lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-rs < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-rs.txt
 
-real	0m52.830s
-user	0m33.434s
-sys	0m19.260s
+real	0m24.518s
+user	0m23.453s
+sys	0m1.048s
 
 lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.rb < test-files/data.txt1000000.txt>  output/data.txt1000000.txt.filter-rb.txt
 
