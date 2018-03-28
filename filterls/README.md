@@ -16,6 +16,7 @@ Tested with:
 |Python|3.5.2|
 |Ruby|2.3.1p112|
 |Rust|1.24.1|
+|Crystal|0.24.2|
 
 ## Commands
 
@@ -40,6 +41,7 @@ In my benchmarks on Thinkpad T430 with 16GB ram and i5-3320M (running Xubuntu 16
 ```
 1x = Go (compiled, and `go run filter.go`)
 1x = Rust (compiled with `-O`)
+2.5x = Crystal (compile with `--release`)
 4.5x = Ruby
 6x = Python
 10x = Elixir pattern matching (`File.stream!`)
@@ -66,6 +68,12 @@ lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-rs 
 real	0m24.518s
 user	0m23.453s
 sys	0m1.048s
+
+lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-cr < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-cr.txt
+
+real	1m8.233s
+user	0m41.949s
+sys	0m31.815s
 
 lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.rb < test-files/data.txt1000000.txt>  output/data.txt1000000.txt.filter-rb.txt
 
