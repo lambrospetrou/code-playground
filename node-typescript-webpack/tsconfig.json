@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": false,
+    "strict": true, //"noImplicitAny": true, //"noImplicitThis": true, //"strictNullChecks": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowJs": true
+  },
+  "files": ["src/index.ts"],
+  "compileOnSave": false,
+  "buildOnSave": false
+}

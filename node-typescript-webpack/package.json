@@ -1,0 +1,36 @@
+{
+  "name": "node-typescript-webpack",
+  "version": "1.0.0",
+  "description": "TS Node starter",
+  "author": "lambrospetrou",
+  "license": "Apache 2.0",
+  "scripts": {
+    "clean": "rm -rf build/",
+    "fmt:prettier":
+      "prettier --no-semi --single-quote --write **/*.{ts,tsx,js,jsx,json}",
+    "fmt:lint": "tslint --fix -p ./ -c tslint.json 'src/**/*.ts'",
+    "fmt": "run-s fmt:prettier fmt:lint",
+    "test": "jest --watch",
+    "test:once": "jest",
+    "build:ts": "webpack --mode production",
+    "watch:ts": "webpack --mode development --watch",
+    "prerelease": "run-s fmt",
+    "release": "run-s test:once build:*"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "jest": "^23.0.0",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "prettier": "1.12.1",
+    "ts-jest": "^22.4.6",
+    "ts-loader": "^4.3.0",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
