@@ -6,6 +6,8 @@ def filter(line):
     segs = line.split(maxsplit=2)
     if len(segs) > 1 and segs[1].isnumeric():
         return int(segs[1]) > 10
+    else:
+        return False
 
 def process():
     for line in sys.stdin:
