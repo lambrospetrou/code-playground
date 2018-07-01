@@ -2,14 +2,14 @@ defmodule FilterlsRunner do
 
   def run() do
     [{"filter-go", "filter-go"},
-     #{"filter.go", "filter.go"},
+    #  {"filter.go", "filter.go"},
      {"filter-rs", "filter-rs"},
      {"filter-cr", "filter-cr"},
+     {"filter.rb", "filter.rb"},
+     {"filter.py", "filter.py"},
      {"filter-ex 0", "elixir-pat"},
      {"filter-ex 1", "elixir-split"},
      {"filter.rkt", "filter.rkt"},
-     {"filter.py", "filter.py"},
-     {"filter.rb", "filter.rb"}
     ]
     |> Enum.each(&runBinary/1)
   end
