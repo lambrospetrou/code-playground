@@ -40,14 +40,14 @@ In my benchmarks on Thinkpad T430 with 16GB ram and i5-3320M (running Xubuntu 16
 
 ```
 1x = Go (compiled, and `go run filter.go`)
-1x = Rust (compiled with `-O`)
-2.5x = Crystal (compile with `--release`)
-4.5x = Ruby
-6x = Python
+1-1.5x = Rust (compiled with `-O`)
+3.5x = Crystal (compile with `--release`)
+5.5x = Ruby
+8x = Python
 10x = Elixir pattern matching (`File.stream!`)
-15x = Racket
-30x = Elixir pattern matching (`IO.binstream(:stdio)`)
-60x = Elixir splitting
+13x = Elixir splitting (`File.stream!`)
+18x = Racket
+25-30x = Elixir (`IO.binstream(:stdio)`)
 ```
 
 So Go seems to be the fastest but with a bit more verbose code.
@@ -55,53 +55,38 @@ So Go seems to be the fastest but with a bit more verbose code.
 Take the above results with a grain of salt, since when I run them on a Macbook 2015, Python was faster than Ruby so other results might be different as well.
 
 ```
-# Some of the results with the largest dataset I used (2.3GB)
+# Some of the results and the datasets I used:
 
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.go < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-go.txt
+lambros@thinkunix:~/dev/github/code-playground/filterls$ ll -h test-files/data.txt test-files/dataMM.txt test-files/data.txt100000.txt 
+-rw-rw-r-- 1 lambros lambros  23M Mar 18 17:48 test-files/dataMM.txt
+-rw-rw-r-- 1 lambros lambros 2.4K Mar 18 17:48 test-files/data.txt
+-rw-rw-r-- 1 lambros lambros 227M Mar 21 22:11 test-files/data.txt100000.txt
 
-real	0m27.408s
-user	0m24.504s
-sys	0m2.477s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-rs < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-rs.txt
-
-real	0m24.518s
-user	0m23.453s
-sys	0m1.048s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-cr < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-cr.txt
-
-real	1m8.233s
-user	0m41.949s
-sys	0m31.815s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.rb < test-files/data.txt1000000.txt>  output/data.txt1000000.txt.filter-rb.txt
-
-real	1m45.471s
-user	1m43.303s
-sys	0m2.064s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.py < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-py.txt
-
-real	2m21.371s
-user	2m18.621s
-sys	0m2.068s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-ex 0 test-files/data.txt1000000.txt output/data.txt1000000.txt.filter-ex.txt
-
-real	4m51.423s
-user	4m43.745s
-sys	0m5.974s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./filter.rkt < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-rkt.txt
-
-real	6m33.597s
-user	6m28.500s
-sys	0m4.807s
-
-lambros@thinkunix:~/dev/github/code-playground/filterls$ time ./build/filter-ex 0 < test-files/data.txt1000000.txt > output/data.txt1000000.txt.filter-ex-stdin.txt
-
-real	13m47.526s
-user	14m33.955s
-sys	2m30.357s
+lambros@thinkunix:~/dev/github/code-playground/filterls$ make run
+rm -rf output/ && mkdir -p output
+elixir run-all.exs
+filter-go-data.txt	[2.876ms	2876ns]
+filter-go-dataMM.txt	[290.17ms	290170ns]
+filter-go-data.txt100000.txt	[2724.463ms	2724463ns]
+filter-rs-data.txt	[2.894ms	2894ns]
+filter-rs-dataMM.txt	[346.541ms	346541ns]
+filter-rs-data.txt100000.txt	[3863.397ms	3863397ns]
+filter-cr-data.txt	[3.332ms	3332ns]
+filter-cr-dataMM.txt	[1034.42ms	1034420ns]
+filter-cr-data.txt100000.txt	[9677.427ms	9677427ns]
+elixir-pat-data.txt	[257.237ms	257237ns]
+elixir-pat-dataMM.txt	[3377.384ms	3377384ns]
+elixir-pat-data.txt100000.txt	[29846.069ms	29846069ns]
+elixir-split-data.txt	[245.733ms	245733ns]
+elixir-split-dataMM.txt	[4345.178ms	4345178ns]
+elixir-split-data.txt100000.txt	[35989.025ms	35989025ns]
+filter.rkt-data.txt	[412.014ms	412014ns]
+filter.rkt-dataMM.txt	[5559.543ms	5559543ns]
+filter.rkt-data.txt100000.txt	[49156.482ms	49156482ns]
+filter.py-data.txt	[128.758ms	128758ns]
+filter.py-dataMM.txt	[3024.823ms	3024823ns]
+filter.py-data.txt100000.txt	[22230.096ms	22230096ns]
+filter.rb-data.txt	[62.38ms	62380ns]
+filter.rb-dataMM.txt	[1619.383ms	1619383ns]
+filter.rb-data.txt100000.txt	[15073.681ms	15073681ns]
 ```

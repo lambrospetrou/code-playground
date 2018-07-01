@@ -5,8 +5,8 @@ defmodule FilterlsRunner do
      #{"filter.go", "filter.go"},
      {"filter-rs", "filter-rs"},
      {"filter-cr", "filter-cr"},
-     {"filter-ex 0", "filter-ex-pat"},
-     {"filter-ex 1", "filter-ex-split"},
+     {"filter-ex 0", "elixir-pat"},
+     {"filter-ex 1", "elixir-split"},
      {"filter.rkt", "filter.rkt"},
      {"filter.py", "filter.py"},
      {"filter.rb", "filter.rb"}
@@ -15,8 +15,9 @@ defmodule FilterlsRunner do
   end
 
   defp runBinary({bin, bin_output}) do
-    files = ["data.txt", "dataMM.txt"]
-    #files = String.Chars.to_string(:os.cmd('ls ./test-files')) |> String.split()
+    # files = ["data.txt", "dataMM.txt", "data.txt100000.txt"]
+    files = ["data.txt"]
+    # files = String.Chars.to_string(:os.cmd('ls ./test-files')) |> String.split()
     files
     |> Enum.each(fn datafile ->
       :timer.tc(fn -> :os.cmd(String.to_charlist(getCmd(bin, bin_output, datafile))) end)
