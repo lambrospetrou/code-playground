@@ -60,16 +60,14 @@ defmodule FilterlsIex do
 
   #################################################
   # Use String.split()
-  defp splitter(<<>>), do: false
 
-  defp splitter(line) when is_binary(line) do
-    splitter(String.split(line, ~r{\s+}, parts: 3, trim: true))
+  defp splitter(line) do
+    parts = String.split(line, " ", parts: 3, trim: true)
+    case parts do
+      [_ | [c2 | _rest]] -> is_valid(c2)
+      _ -> false
+    end
   end
-
-  defp splitter([]), do: false
-  defp splitter([_1 | []]), do: false
-
-  defp splitter([_1 | [c2 | _rest]]), do: is_valid(c2)
 
   defp is_valid(num_str) do
     case Integer.parse(num_str) do
