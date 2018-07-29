@@ -2,17 +2,6 @@
 
 (require '[clojure.string :as str])
 
-(defn isnumeric [s] 
-  (and
-    (not (empty? s))
-    (every? #(Character/isDigit %) s)))
-
-(defn filterer2 [line]
-  (def col2 (get (str/split line #" " 3) 1))
-  (if (isnumeric col2)
-    (> (Integer/parseInt (str/trim col2)) 10)
-    false))
-
 (defn filterer [line]
   (try 
     (> (Integer/parseInt (str/trim (get (str/split line #" " 3) 1))) 10)
@@ -21,7 +10,7 @@
 (defn process [in out]
   (with-open [bufout (java.io.BufferedWriter. out) bufin (java.io.BufferedReader. in)]
     (doseq
-      [l (line-seq bufin)]
+      [^String l (line-seq bufin)]
       (if (filterer l) (do (.write bufout l) (.newLine bufout))))))
 
 (defn process-file [fin fout]
