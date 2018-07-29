@@ -5,7 +5,7 @@
 (define (filter1 l)
   (define (is-valid str)
     (define num (string->number str))
-    (if (and num (> num 10)) #t #f))
+    (and num (> num 10)))
   (match (string-split l)
     [(cons _ (cons b _)) (is-valid b)]
     [_ #f]))
