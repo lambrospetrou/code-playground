@@ -1,0 +1,55 @@
+{
+  "name": "aftermatch",
+  "version": "1.0.0",
+  "description": "Meiosis - Demo",
+  "author": "lambrospetrou",
+  "license": "Apache 2.0",
+  "scripts": {
+    "clean": "rm -rf build/",
+    "fmt:prettier":
+      "prettier --no-semi --single-quote --write **/*.{ts,tsx,js,jsx,json}",
+    "fmt:lint": "tslint --fix -p ./ -c tslint.json 'src/**/*.ts'",
+    "fmt": "run-s fmt:prettier fmt:lint",
+    "test": "jest --watch",
+    "test:once": "jest",
+    "serve": "http-server -p 3000 build/app",
+    "build:ts": "webpack --mode production",
+    "watch:ts": "webpack --mode development --watch",
+    "build:scss":
+      "node-sass src/scss/app.scss --output-style compressed | postcss --use autoprefixer -o build/app/app.css --no-map",
+    "debug:scss":
+      "node-sass src/scss/app.scss | postcss --use autoprefixer -o build/app/app.css",
+    "watch:scss": "nodemon -w src/scss -e scss -x \"npm run debug:scss\"",
+    "copy-static": "mkdir -p build/app && cp -r src/static/* build/app/",
+    "prerelease": "run-s fmt",
+    "release": "run-s test:once copy-static build:*",
+    "prestart": "run-s copy-static",
+    "start": "run-p watch:* serve"
+  },
+  "dependencies": {
+    "mithril": "^1.1.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/mithril": "^1.1.6",
+    "autoprefixer": "^6.7.7",
+    "http-server": "^0.9.0",
+    "jest": "^23.5.0",
+    "meiosis": "^1.4.1",
+    "meiosis-tracer": "^1.4.1",
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.18.4",
+    "npm-run-all": "^4.0.2",
+    "postcss-cli": "^3.1.1",
+    "prettier": "1.12.1",
+    "ramda": "^0.25.0",
+    "ts-jest": "^22.4.6",
+    "ts-loader": "^4.5.0",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^7.1.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.1.7"
+  }
+}

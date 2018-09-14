@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015", "dom"],
+    "sourceMap": false,
+    "strict": true, //"noImplicitAny": true, //"noImplicitThis": true, //"strictNullChecks": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "noLib": false,
+    "declaration": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowJs": true
+  },
+  "files": ["src/app/main.ts"],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
