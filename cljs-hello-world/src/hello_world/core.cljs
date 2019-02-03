@@ -1,8 +1,8 @@
 (ns hello-world.core
-  (:require [cljs.nodejs :as nodejs]
+  (:require ;[cljs.nodejs :as nodejs]
             [clojure.string :as str]))
 
-(nodejs/enable-util-print!)
+;(nodejs/enable-util-print!)
 (enable-console-print!)
 
 (println "Hello world!")
