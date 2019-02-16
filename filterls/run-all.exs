@@ -20,8 +20,8 @@ defmodule FilterlsRunner do
 
   defp runBinary({bin, bin_output}) do
     # files = ["data.txt", "dataMM.txt", "data.txt100000.txt"]
-    #files = ["data.txt", "dataMM.txt"]
-    files = ["data.txt"]
+    files = ["data.txt", "dataMM.txt"]
+    #files = ["data.txt"]
     # files = String.Chars.to_string(:os.cmd('ls ./test-files')) |> String.split()
     files
     |> Enum.each(fn datafile ->

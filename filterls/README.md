@@ -17,6 +17,8 @@ Tested with:
 |Ruby|2.3.1p112|
 |Rust|1.24.1|
 |Crystal|0.24.2|
+|Clojure|1.10|
+|ClojureScript|1.10 (Planck)|
 
 ## Commands
 
@@ -44,9 +46,7 @@ In my benchmarks on Thinkpad T430 with 16GB ram and i5-3320M (running Xubuntu 16
 3.5x = Crystal (compile with `--release`)
 5.5x = Ruby
 8x = Python
-10x = Elixir pattern matching (`File.stream!`)
-13x = Elixir splitting (`File.stream!`)
-18x = Racket
+10-15x = Clojure/Elixir/Racket
 25-30x = Elixir (`IO.binstream(:stdio)`)
 ```
 
