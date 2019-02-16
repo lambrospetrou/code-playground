@@ -21,7 +21,8 @@ fn main() {
 	for line in reader.lines() {
 		let l = line.unwrap();
 		if is_valid(&l) {
-	    	writer.write_all((l+"\n").as_bytes()).expect("Unable to write to output");
+	    	writeln!(writer, "{}", l).expect("Unable to write to output");
 		}
 	}
 }
+
