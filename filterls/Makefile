@@ -1,6 +1,6 @@
 .PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar clean run
 
-default: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar
+default: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js
 
 clean:
 	rm -rf build/ && mkdir -p build/
@@ -30,8 +30,12 @@ filter-rb: clean
 filter-cr: clean
 	crystal filter.cr -o build/filter-cr --release
 
+filter-js: clean
+	cp filter.js build/
+
 filter-cljs: clean
 	cp filter.cljs build/
+	cp filter-lumo.cljs build/
 
 filter-clj: clean
 	cp filter.clj build/
