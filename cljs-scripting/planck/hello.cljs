@@ -24,7 +24,7 @@
      (let [parts (str/split l #" " 3)
            second-col (get parts 1)
            num (if (gstr/isNumeric second-col) (gstr/parseInt second-col) nil)]
-       (if (> num 10) (do (-write *out* l) (newline)))))))
+       (if (> num 10) (do (-write out l) (-write out "\n")))))))
 
 (defn filterls [] (filterls-lines (core/line-seq core/*in*)))
 

@@ -18,5 +18,7 @@
 
 (defn process-stdio [] (process *in* *out*))
 
-; (time (process-file "test-files/data.txt" "output/clojure.out"))
+(process-stdio)
+
+;(time (process-file "test-files/dataMM.txt" "output/clojure.out"))
 ;(process (java.io.StringReader. (slurp "test-files/data.txt")))
