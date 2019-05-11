@@ -5,9 +5,13 @@
   (:gen-class))
 
 (defn filterer [line]
-    (try 
-             (> (Integer/parseInt (str/trim (get (str/split line #" " 3) 1))) 10)
-          (catch Exception e false)))
+  (let [cols (str/split line #" " 3)]
+    (if 
+      (< (count cols) 2)
+      false  
+      (try 
+        (> (Integer/parseInt (get cols 1)) 10)
+        (catch Exception e false)))))
 
 (defn process [in out]
     (with-open [bufout (java.io.BufferedWriter. out) bufin (java.io.BufferedReader. in)]
