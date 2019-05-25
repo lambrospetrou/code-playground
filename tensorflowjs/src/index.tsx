@@ -1,9 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "./styles.scss";
 
+import "./tensorflow";
+
 interface Props {
-   name: string
+  name: string;
 }
 
 class App extends React.Component<Props> {
