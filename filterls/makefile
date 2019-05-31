@@ -1,6 +1,8 @@
 .PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-kotlin clean run
 
-default: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin
+default: clean filter-go filter-py filter-rb filter-cr
+
+all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin
 
 clean:
 	rm -rf build/ && mkdir -p build/
