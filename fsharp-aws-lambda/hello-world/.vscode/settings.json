@@ -1,0 +1,4 @@
+{
+  "git.ignoreLimitWarning": true,
+  "FSharp.fsacRuntime": "netcore"
+}
