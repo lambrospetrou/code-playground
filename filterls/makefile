@@ -1,8 +1,8 @@
-.PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-kotlin clean run
+.PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-kotlin filter-fsharp clean run
 
-default: clean filter-go filter-py filter-rb filter-cr
+default: clean filter-go filter-rb filter-cr filter-kotlin filter-fsharp filter-rs
 
-all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin
+all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin filter-fsharp
 
 clean:
 	rm -rf build/ && mkdir -p build/
@@ -50,6 +50,9 @@ filter-clj-uberjar: clean
 
 filter-kotlin: clean
 	kotlinc filter.kt -include-runtime -d build/filter-kotlin.jar
+
+filter-fsharp: clean
+	fsharpc --standalone --out:build/filter-fsharp filter.fs
 
 run:
 	rm -rf output/ && mkdir -p output

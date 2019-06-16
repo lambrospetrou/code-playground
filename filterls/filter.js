@@ -19,4 +19,3 @@ const filterLine = line => {
 rl.on("line", line => {
     if (filterLine(line)) { console.log(line); }
 });
-

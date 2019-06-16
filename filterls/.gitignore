@@ -2,3 +2,4 @@ build
 output
 *~
 test-files/data.txt100*
+.vscode/
