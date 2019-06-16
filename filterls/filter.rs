@@ -4,7 +4,7 @@ use std::io::BufReader;
 use std::io::BufWriter;
 
 fn is_valid(line: &String) -> bool {
-	let v: Vec<&str> = line.split(' ').collect();
+	let v: Vec<&str> = line.splitn(3, ' ').collect();
 	if v.len() > 1 {
 		match v[1].trim().parse::<u64>() {
 			Ok(num) => return num > 10,
