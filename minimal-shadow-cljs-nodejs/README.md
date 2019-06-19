@@ -38,6 +38,16 @@ Compiles to `build/main.js`.
 
 You may find more configurations on http://doc.shadow-cljs.org/ .
 
+### Build the library
+
+Apart from the main Node script/app generated, we can also generate a library in the standard `commonjs` format that can be used in other Node projects, or as a handler in AWS Lambda.
+
+```
+npm run build:lib
+```
+
+- [Multiple named exports](https://shadow-cljs.github.io/docs/UsersGuide.html#_multiple_static_named_exports)
+
 ### License
 
 MIT

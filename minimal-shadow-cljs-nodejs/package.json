@@ -6,6 +6,7 @@
     "watch": "shadow-cljs watch app",
     "compile": "shadow-cljs compile app",
     "build": "shadow-cljs release app",
+    "build:lib": "shadow-cljs release library",
     "start": "node build/main.js"
   },
   "keywords": [],
