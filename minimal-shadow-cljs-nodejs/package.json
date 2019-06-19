@@ -1,0 +1,19 @@
+{
+  "name": "minimal-shadow-cljs-nodejs",
+  "version": "0.1.0",
+  "description": "ClojureScript script compiled to Node",
+  "scripts": {
+    "watch": "shadow-cljs watch app",
+    "compile": "shadow-cljs compile app",
+    "build": "shadow-cljs release app",
+    "start": "node build/main.js"
+  },
+  "keywords": [],
+  "author": "lambrospetrou",
+  "license": "MIT",
+  "devDependencies": {
+    "shadow-cljs": "^2.8.39",
+    "source-map-support": "^0.5.12",
+    "ws": "^7.0.1"
+  }
+}
