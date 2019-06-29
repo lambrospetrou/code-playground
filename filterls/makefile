@@ -1,8 +1,8 @@
-.PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-kotlin filter-fsharp clean run
+.PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-clj-uberjar-native filter-kotlin filter-fsharp clean run
 
-default: clean filter-go filter-rb filter-cr filter-kotlin filter-fsharp filter-rs
+default: clean filter-go filter-rb filter-cr filter-kotlin filter-rs filter-ex
 
-all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin filter-fsharp
+all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin filter-fsharp filter-clj-uberjar-native
 
 clean:
 	rm -rf build/ && mkdir -p build/
@@ -45,6 +45,8 @@ filter-clj: clean
 filter-clj-uberjar: clean
 	cd filter_clj; lein compile && lein uberjar
 	mv filter_clj/target/filter_clj-0.1.0-SNAPSHOT-standalone.jar build/filter-clj-uberjar.jar
+	
+filter-clj-uberjar-native: clean filter-clj-uberjar
 	docker run --rm -it -v `pwd`:`pwd` -w `pwd` oracle/graalvm-ce:1.0.0-rc12 bash -c "native-image -H:+ReportUnsupportedElementsAtRuntime --no-server -J-Xmx4G -J-Xms4G -jar ./build/filter-clj-uberjar.jar && chown `id -u`:`id -u` ./filter-clj-uberjar"
 	mv filter-clj-uberjar build/filter-clj-uberjar-native
 

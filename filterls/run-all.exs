@@ -5,7 +5,7 @@ defmodule FilterlsRunner do
      {"filter-go", "filter-go"},
      #{"filter.go", "filter.go"},
      {"filter-rs", "filter-rs"},
-     {"filter-cr", "filter-cr"},
+     #{"filter-cr", "filter-cr"},
      {"filter-fsharp", "filter-fsharp"},
      {"filter.rb", "filter.rb"},
      #{"filter.py", "filter.py"},
@@ -13,21 +13,21 @@ defmodule FilterlsRunner do
      #{"filter-ex 1", "elixir-split"},
      #{"filter.rkt", "filter.rkt"},
      #{"filter.cljs", "filter.cljs"},
-    #  {"filter.js", "filter.js"},
+     #{"filter.js", "filter.js"},
      #{"filter-lumo.cljs", "filter-lumo.cljs"},
-    #  {"filter.clj", "filter.clj"},
+     #{"filter.clj", "filter.clj"},
      {"filter-kotlin-jar", "filter-kotlin-jar"},
-    #  {"filter-clj-uberjar", "filter-clj-uberjar"},
+     #{"filter-clj-uberjar", "filter-clj-uberjar"},
      #{"filter-clj-uberjar-native", "filter-clj-uberjar-native"},
     ]
     |> Enum.each(&runBinary/1)
   end
 
   defp runBinary({bin, bin_output}) do
-    #files = ["data.txt", "dataMM.txt", "data.txt100000.txt"]
+    #files = ["data.txt", "dataMM.txt", "data.txt100000.txt", "data.txt1000000.txt"]
     #files = ["data.txt100000.txt", "data.txt1000000.txt"]
     files = ["data.txt", "dataMM.txt"]
-    #files = ["data.txt"]
+    #files = ["data.txt1000000.txt"]
     # files = String.Chars.to_string(:os.cmd('ls ./test-files')) |> String.split()
     files
     |> Enum.each(fn datafile ->

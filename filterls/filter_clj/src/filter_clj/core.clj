@@ -26,4 +26,3 @@
 
 (defn -main []
   (process-stdio))
-
