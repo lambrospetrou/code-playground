@@ -15,7 +15,7 @@
   (println "Trying values:" value-a value-b)
   (do-work))
 
-(defn main! []
+(defn -main []
   (println "App loaded!")
   (do-work))
 

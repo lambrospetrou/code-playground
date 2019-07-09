@@ -2,7 +2,7 @@
  :dependencies []
  :builds {:app {:target :node-script
                 :output-to "build/main.js"
-                :main server.main/main!
+                :main server.main/-main
                 :devtools {:after-load server.main/reload!}}
           :library {:target :node-library
                     :output-to "build/lib.js"

@@ -48,6 +48,16 @@ npm run build:lib
 
 - [Multiple named exports](https://shadow-cljs.github.io/docs/UsersGuide.html#_multiple_static_named_exports)
 
+### Run a script on the command line before building
+
+Using [Lumo-cljs](https://github.com/anmonteiro/lumo) allows us to run scripts before fully building with `shadow-cljs` to test things out.
+
+The `lumo -m <ns-namespace>` command tries to execute the `-main` function inside the given `<ns-namespace>`.
+
+```
+npx lumo -c "src" -m "server.main"
+```
+
 ### License
 
 MIT
