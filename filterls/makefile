@@ -1,6 +1,6 @@
 .PHONY: filter-go filter-ex filter-racket filter-py filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-clj-uberjar-native filter-kotlin filter-fsharp clean run
 
-default: clean filter-go filter-rb filter-cr filter-kotlin filter-rs filter-ex
+default: clean filter-go filter-rb filter-cr filter-kotlin filter-rs filter-racket filter-cljs
 
 all: clean filter-go filter-ex filter-racket filter-py filter-rb filter-rs filter-cr filter-cljs filter-clj filter-clj-uberjar filter-js filter-kotlin filter-fsharp filter-clj-uberjar-native
 
@@ -21,7 +21,7 @@ filter-ex: clean
 
 filter-racket: clean
 	cp filter.rkt build/
-	#raco exe --orig-exe filter-racket.rkt; mv filter-racket build/
+	#raco exe --orig-exe filter.rkt; mv filter build/filter-rkt
 
 filter-py: clean
 	cp filter.py build/
