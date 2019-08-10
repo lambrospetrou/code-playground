@@ -5,14 +5,13 @@
 
 (ns example.echo
   (:require [planck.core :as core]
-            [goog.string :as gstr]
-            [clojure.string :as str]))
+            [goog.string :as gstr]))
 
 (defn filterls-lines
   ([lines] (filterls-lines lines *out*))
   ([lines out]
    (doseq [l lines]
-     (let [parts (str/split l #" " 3)
+     (let [parts (gstr/splitLimit l " " 3)
            second-col (get parts 1)
            num (if (gstr/isNumeric second-col) (gstr/parseInt second-col) nil)]
        (if (> num 10) (do (-write out l) (-write out "\n")))))
