@@ -1,0 +1,5 @@
+build
+output
+*~
+test-files/xlarge.txt
+.vscode/
