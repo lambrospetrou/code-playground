@@ -1,0 +1,8 @@
+{
+  "name": "tree-search-bench",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "build": "tsc"
+  }
+}

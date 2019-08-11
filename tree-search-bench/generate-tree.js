@@ -18,14 +18,12 @@ function extendSubTree(node, depth, probHasChildren, probTwoChildren) {
   const firstChild = Math.random() > 0.5 ? "left" : "right";
 
   node[firstChild] = newNode();
-  // avoidCallStackSizeLimit(() => extendSubTree(node[firstChild], depth - 1, probHasChildren, probTwoChildren));
   extendSubTree(node[firstChild], depth - 1, probHasChildren, probTwoChildren);
 
   const hasTwoChildren = Math.random() < probTwoChildren;
   const secondChild = firstChild == "left" ? "right" : "left";
   if (hasTwoChildren) {
     node[secondChild] = newNode();
-    // avoidCallStackSizeLimit(() => extendSubTree(node[secondChild], depth - 1, probHasChildren, probTwoChildren));
     extendSubTree(node[secondChild], depth - 1, probHasChildren, probTwoChildren);
   }
 }
@@ -45,10 +43,6 @@ function addNodeAtDepth(root, maxdepth) {
     }
     depth -= 1;
   }
-}
-
-function avoidCallStackSizeLimit(f) {
-  setTimeout(() => f(), 0);
 }
 
 module.exports = {

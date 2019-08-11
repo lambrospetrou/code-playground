@@ -1,5 +1,7 @@
 build
 output
 *~
-test-files/xlarge.txt
+test-files/xlarge.json
+test-files/large.json
 .vscode/
+typescript/node_modules/

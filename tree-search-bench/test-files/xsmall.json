@@ -1,0 +1,189 @@
+{
+ "val": 1,
+ "right": {
+  "val": 65,
+  "right": {
+   "val": 857,
+   "left": {
+    "val": 608,
+    "right": {
+     "val": 24,
+     "left": {
+      "val": 681
+     },
+     "right": {
+      "val": 406
+     }
+    },
+    "left": {
+     "val": 774,
+     "right": {
+      "val": 250
+     },
+     "left": {
+      "val": 719
+     }
+    }
+   },
+   "right": {
+    "val": 916,
+    "right": {
+     "val": 64,
+     "right": {
+      "val": 425
+     },
+     "left": {
+      "val": 14
+     }
+    },
+    "left": {
+     "val": 796,
+     "left": {
+      "val": 830
+     },
+     "right": {
+      "val": 415
+     }
+    }
+   }
+  },
+  "left": {
+   "val": 500,
+   "left": {
+    "val": 635,
+    "left": {
+     "val": 591,
+     "left": {
+      "val": 663
+     },
+     "right": {
+      "val": 171
+     }
+    },
+    "right": {
+     "val": 147,
+     "right": {
+      "val": 692
+     },
+     "left": {
+      "val": 181
+     }
+    }
+   },
+   "right": {
+    "val": 12,
+    "right": {
+     "val": 790,
+     "right": {
+      "val": 737
+     },
+     "left": {
+      "val": 638
+     }
+    },
+    "left": {
+     "val": 499,
+     "left": {
+      "val": 554
+     },
+     "right": {
+      "val": 322
+     }
+    }
+   }
+  }
+ },
+ "left": {
+  "val": 349,
+  "right": {
+   "val": 712,
+   "right": {
+    "val": 20,
+    "right": {
+     "val": 535,
+     "right": {
+      "val": 708
+     },
+     "left": {
+      "val": 742
+     }
+    },
+    "left": {
+     "val": 637,
+     "left": {
+      "val": 48
+     },
+     "right": {
+      "val": 960
+     }
+    }
+   },
+   "left": {
+    "val": 564,
+    "left": {
+     "val": 849,
+     "right": {
+      "val": 315
+     },
+     "left": {
+      "val": 258
+     }
+    },
+    "right": {
+     "val": 696,
+     "right": {
+      "val": 791
+     },
+     "left": {
+      "val": 785
+     }
+    }
+   }
+  },
+  "left": {
+   "val": 392,
+   "right": {
+    "val": 335,
+    "right": {
+     "val": 407,
+     "right": {
+      "val": 636
+     },
+     "left": {
+      "val": 71
+     }
+    },
+    "left": {
+     "val": 115,
+     "left": {
+      "val": 258
+     },
+     "right": {
+      "val": 599
+     }
+    }
+   },
+   "left": {
+    "val": 876,
+    "left": {
+     "val": 75,
+     "left": {
+      "val": 954
+     },
+     "right": {
+      "val": 194
+     }
+    },
+    "right": {
+     "val": 320,
+     "left": {
+      "val": 155
+     },
+     "right": {
+      "val": 668
+     }
+    }
+   }
+  }
+ }
+}
