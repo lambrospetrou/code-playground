@@ -8,8 +8,9 @@ clean:
 	rm -rf build/ && mkdir -p build/
 
 js: clean
-	cd typescript && npm run build
-	cp typescript/deepest-node.js build/
+	cd typescript && npm run release
+	cp typescript/build/src/deepest-node.js build/
+	chmod +x build/deepest-node.js
 
 rb: clean
 	cp deepest-node.rb build/
