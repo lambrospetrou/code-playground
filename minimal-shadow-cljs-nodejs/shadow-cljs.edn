@@ -1,9 +1,19 @@
 {:source-paths ["src"]
  :dependencies []
- :builds {:app {:target :node-script
-                :output-to "build/main.js"
-                :main server.main/-main
-                :devtools {:after-load server.main/reload!}}
-          :library {:target :node-library
-                    :output-to "build/lib.js"
-                    :exports {:handler server.main/handler}}}}
+ :builds
+  ; https://shadow-cljs.github.io/docs/UsersGuide.html#target-node-script
+ {:app {:target :node-script
+        :output-to "build/node-app.js"
+        :main server.main/-main
+        :devtools {:after-load server.main/reload!}}
+  ; https://shadow-cljs.github.io/docs/UsersGuide.html#target-node-library
+  :library {:target :node-library
+            :output-to "build/lib.js"
+            :exports {:handler library.main/handler}}
+  ; https://shadow-cljs.github.io/docs/UsersGuide.html#target-browser
+  :browser {:target :browser
+            :output-dir "build/browser"
+            :asset-path "."
+            :modules {:browser-main {:entries [browser.main]
+                                     :init-fn browser.main/init}}
+            :build-hooks [(_build_hooks.browser/copy-index)]}}}

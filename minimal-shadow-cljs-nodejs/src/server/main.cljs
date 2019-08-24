@@ -3,6 +3,10 @@
   ; https://shadow-cljs.github.io/docs/UsersGuide.html#npm
   (:require ["crypto" :as crypto]))
 
+; This is standard ClojureScript code and the output should be run using Node.
+;
+; More details at https://shadow-cljs.github.io/docs/UsersGuide.html#target-node-script
+
 (def value-a 1)
 
 (defonce value-b 2)
@@ -18,12 +22,3 @@
 (defn -main []
   (println "App loaded!")
   (do-work))
-
-(defn handler [event context callback]
-  (do
-    (println event)
-    (callback
-     nil
-     (clj->js {:statusCode 200
-               :body (.stringify js/JSON (-> (crypto/randomBytes 16) (.toString "base64")))
-               :headers {}}))))
