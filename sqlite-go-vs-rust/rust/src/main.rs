@@ -13,7 +13,11 @@ fn time_it<F: Fn() -> Result<()>>(prefix: String, f: F) -> Result<()> {
 }
 
 fn main() -> Result<()> {
-    let mut conn = Connection::open("users.db")?;
+    let db_path = match env::var("SQLITE_PATH") {
+        Ok(val) => val,
+        Err(_) => String::from("users.db")
+    };
+    let mut conn = Connection::open(db_path)?;
 
     conn.execute(
         "create table if not exists users (name TEXT, age INTEGER)",
