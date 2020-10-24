@@ -8,4 +8,4 @@ edition = "2018"
 
 [dependencies]
 rand = "0.7.3"
-rusqlite = "0.24.1"
+rusqlite = {version = "0.24.1", features = ["bundled"]}

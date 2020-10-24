@@ -36,7 +36,7 @@ fn main() -> Result<()> {
         let mut rng = rand::thread_rng();
         { // Scope is needed here to avoid `move_out` issues at `tx.commit()`
             let mut stmt = tx.prepare("INSERT INTO users (name, age) VALUES (?, ?)")?;
-            for idx in 1..num_inserts {
+            for idx in 0..num_inserts {
                 let name = if rng.gen::<f64>() < 0.6 {
                     format!("Lambros-{}", idx)
                 } else {

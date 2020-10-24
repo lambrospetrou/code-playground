@@ -75,7 +75,7 @@ func queryAll(db *sql.DB) {
 func timeIt(prefix string, f func()) {
 	start := time.Now()
 	f()
-	log.Println("Execution time:", prefix, time.Since(start))
+	log.Println("Time elapsed in", prefix, "is:", time.Since(start))
 }
 
 func main() {
@@ -100,7 +100,7 @@ func main() {
 		}
 	}
 
-	timeIt("total", func() {
+	timeIt("main()", func() {
 		createTable(db)
 		timeIt("inserts", func() {
 			transactionInserts(db, numInserts)
