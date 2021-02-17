@@ -1,6 +1,5 @@
 import com.lambrospetrou.hello.Hello
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.atomic.AtomicLong
@@ -47,6 +46,7 @@ class HelloTest {
             }
 
             println("total sum: $atomicLong")
+            assertEquals(499999500000, atomicLong.get())
         }
         println(" world!")
     }
