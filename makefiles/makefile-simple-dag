@@ -1,0 +1,24 @@
+# Run with `make -f makefile-simple-dag -j 3 t3 t2 t1` for parallelism 3
+# or with `make -f makefile-simple-dag -j $(nproc) all` to use all processors.
+# Note that the run will hang if ran with only 1 processor.
+
+.PHONY: all t1 t2 t3
+
+all: t1 t2 t3
+
+t1:
+	@echo "t1"
+	@sleep 5
+	@echo "t2"
+
+t0:
+	@rm -f /tmp/t2.comm
+	@mkfifo /tmp/t2.comm
+
+t2: t0
+	cat /usr/share/dict/words > /tmp/t2.comm
+
+t3: t0
+	echo "Total lines: " && wc -l < /tmp/t2.comm
+
+
