@@ -59,10 +59,10 @@ task buildNativeImageDocker(type:Exec) {
 
 task nativeImageDocker(type:Exec) {
     dependsOn "shadowJar"
-    commandLine "bash", "-c", "docker run --rm -v \$(pwd):/project graal-native-image --no-fallback -H:+ReportExceptionStackTraces -H:+TraceClassInitialization --enable-url-protocols=https -jar /project/build/libs/HelloWorld.jar /project/build/libs/HelloWorld-native"
+    commandLine "bash", "-c", "docker run --rm -v \$(pwd):/project graal-native-image --no-fallback -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar /project/build/libs/HelloWorld.jar /project/build/libs/HelloWorld-native"
 }
 
 task nativeImage(type:Exec) {
     dependsOn "shadowJar"
-    commandLine "bash", "-c", "native-image --no-fallback -H:+ReportExceptionStackTraces -H:+TraceClassInitialization --enable-url-protocols=https -jar build/libs/HelloWorld.jar build/libs/HelloWorld-native"
+    commandLine "bash", "-c", "native-image --no-fallback -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar build/libs/HelloWorld.jar build/libs/HelloWorld-native"
 }
