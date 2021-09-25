@@ -1,0 +1,31 @@
+# Run with `make -f makefile-parallel-files -j 3` for parallelism 3
+# or with `make -f makefile-parallel-files -j $(nproc)` to use all processors.
+# Note that the run will process each file target one after the other with the default `-j`.
+
+.PHONY: all, boom
+
+MAKEFILE_NAME = makefile-parallel-files
+DATAFILES = $(wildcard data/*.json)
+
+all: boom
+
+# Pass all the input files to make as targets! The dynamic target below will take them and process them.
+boom:
+	$(MAKE) $(DATAFILES) --always-make -f $(MAKEFILE_NAME)
+
+# This is a separate target in order to show that the `data/%.json` target below
+# can be executed in parallel with the `-j N` argument.
+# Therefore, we can process all the files in a directory in parallel up to the given `-j` argument!
+data/a.json:
+	@echo "processing data/a.json"
+	@sleep 10
+
+# The target that will process each file. Sleeping intermittently just to simulate busy work.
+data/%.json:
+	@echo "processing single file"
+	@cat $@
+	@sleep 1
+	@cat $@
+	@sleep 1
+	@cat $@
+
