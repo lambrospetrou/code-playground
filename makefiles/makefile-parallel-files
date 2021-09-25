@@ -2,23 +2,33 @@
 # or with `make -f makefile-parallel-files -j $(nproc)` to use all processors.
 # Note that the run will process each file target one after the other with the default `-j`.
 
-.PHONY: all, boom
+.PHONY: all,boom1,boom2
 
 MAKEFILE_NAME = makefile-parallel-files
 DATAFILES = $(wildcard data/*.json)
 
-all: boom
+all: boom2
 
 # Pass all the input files to make as targets! The dynamic target below will take them and process them.
-boom:
+# The `--always-make` is the CRITICAL argument here, otherwise make will not find anything to do since the files are present.
+boom1:
 	$(MAKE) $(DATAFILES) --always-make -f $(MAKEFILE_NAME)
+
+# Similar to 'boom1' target, but instead of explicitly passing all the files as targets
+# we can just trigger a recursive make with a target that depends on the files to process, see `datafiles_all`.
+# As above though, the critical argument is `--always-make` which will force the run!
+boom2:
+	$(MAKE) datafiles_all --always-make -f $(MAKEFILE_NAME)
+
+datafiles_all: $(DATAFILES)
+	@echo :: 'datafiles_all' finished!
 
 # This is a separate target in order to show that the `data/%.json` target below
 # can be executed in parallel with the `-j N` argument.
 # Therefore, we can process all the files in a directory in parallel up to the given `-j` argument!
 data/a.json:
 	@echo "processing data/a.json"
-	@sleep 10
+	@sleep 5
 
 # The target that will process each file. Sleeping intermittently just to simulate busy work.
 data/%.json:
