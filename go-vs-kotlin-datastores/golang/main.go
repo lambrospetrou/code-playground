@@ -6,12 +6,14 @@ import (
 	"html"
 	"log"
 	"net/http"
+	"runtime"
 	"strings"
 
 	"crawshaw.io/sqlite/sqlitex"
 )
 
 func main() {
+	fmt.Println(runtime.GOMAXPROCS(0))
 	var err error
 	var dbpool *sqlitex.Pool
 	// if dbpool, err = sqlitex.Open("file::memory:?mode=memory", 0, 10); err != nil {

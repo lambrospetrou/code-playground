@@ -13,15 +13,15 @@ import org.http4k.routing.bind
 import org.http4k.routing.routes
 import org.http4k.server.ApacheServer
 import org.http4k.server.asServer
+import org.sqlite.SQLiteConfig
 
-fun app(db: Database): HttpHandler = routes(
+fun makeApp(db: Database): HttpHandler = routes(
     "/ping" bind GET to {
         Response(OK).body("pong")
     },
 
     "/add" bind GET to {
         val name = (it.query("name") ?: "").trim()
-
         when {
             name.isEmpty() ->
                 Response(BAD_REQUEST).body("Invalid 'name' given: $name")
@@ -41,7 +41,6 @@ fun app(db: Database): HttpHandler = routes(
 
     "/" bind GET to {
         val name = (it.query("name") ?: "").trim()
-
         when {
             name.isEmpty() ->
                 Response(BAD_REQUEST).body("Invalid 'name' given: $name")
@@ -58,13 +57,16 @@ fun app(db: Database): HttpHandler = routes(
 fun main() {
     val port = (System.getenv("PORT") ?: "9000").toInt()
 
-    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+    val config = SQLiteConfig().apply {
+        setSharedCache(true)
+        setJournalMode(SQLiteConfig.JournalMode.WAL)
+    }
+    val driver: SqlDriver = JdbcSqliteDriver("jdbc:sqlite:/tmp/users.sqlite3", properties = config.toProperties())
     Database.Schema.create(driver)
 
-    val printingApp: HttpHandler = app(db = Database(driver))
-    val server = printingApp.asServer(ApacheServer(port)).start()
+    val app: HttpHandler = makeApp(db = Database(driver))
+    val server = app.asServer(ApacheServer(port)).start()
 
     println(Runtime.getRuntime().availableProcessors())
-
     println("Server started on " + server.port())
 }

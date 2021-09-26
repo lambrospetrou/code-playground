@@ -75,5 +75,5 @@ task nativeImageDocker(type:Exec) {
 
 task nativeImage(type:Exec) {
     dependsOn "shadowJar"
-    commandLine "bash", "-c", "native-image --no-fallback --allow-incomplete-classpath -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar build/libs/HelloWorld.jar build/libs/HelloWorld-native"
+    commandLine "bash", "-c", "native-image --no-fallback -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar build/libs/HelloWorld.jar build/libs/HelloWorld-native"
 }
