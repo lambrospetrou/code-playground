@@ -60,6 +60,7 @@ dependencies {
 
     // SQLite
     implementation "com.squareup.sqldelight:sqlite-driver:1.5.0"
+    // Needed to bring the actual SQLite library.
     implementation "org.xerial:sqlite-jdbc:3.36.0.3"
 }
 
