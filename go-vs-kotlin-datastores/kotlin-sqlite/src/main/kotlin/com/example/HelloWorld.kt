@@ -1,8 +1,11 @@
 package com.example
 
+import com.squareup.sqldelight.db.SqlDriver
+import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
 import org.http4k.core.Response
+import org.http4k.core.Status
 import org.http4k.core.Status.Companion.BAD_REQUEST
 import org.http4k.core.Status.Companion.NOT_FOUND
 import org.http4k.core.Status.Companion.OK
@@ -10,30 +13,30 @@ import org.http4k.routing.bind
 import org.http4k.routing.routes
 import org.http4k.server.ApacheServer
 import org.http4k.server.asServer
-import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.transactions.transactionManager
-import java.sql.Connection
 
-object DbSettings {
-    val db by lazy {
-        Database.connect("jdbc:sqlite:/tmp/users.sqlite3", "org.sqlite.JDBC")
-//        val db = Database.connect("jdbc:sqlite:/tmp/users.sqlite3", "org.sqlite.JDBC")
-//        TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
-//        db
-    }
-}
-
-object Users: IntIdTable() {
-    val name = varchar("name", 100)
-}
-
-val app: HttpHandler = routes(
+fun app(db: Database): HttpHandler = routes(
     "/ping" bind GET to {
         Response(OK).body("pong")
+    },
+
+    "/add" bind GET to {
+        val name = (it.query("name") ?: "").trim()
+
+        when {
+            name.isEmpty() ->
+                Response(BAD_REQUEST).body("Invalid 'name' given: $name")
+            else -> {
+                val userQueries = db.usersQueries
+                try {
+                    userQueries.transaction {
+                        userQueries.addUser(name = name)
+                    }
+                    Response(OK).body("Welcome to our community $name!")
+                } catch (e: Exception) {
+                    Response(Status.INTERNAL_SERVER_ERROR).body("Sadly we failed to register you: $name")
+                }
+            }
+        }
     },
 
     "/" bind GET to {
@@ -42,27 +45,23 @@ val app: HttpHandler = routes(
         when {
             name.isEmpty() ->
                 Response(BAD_REQUEST).body("Invalid 'name' given: $name")
-            else ->
-                transaction {
-                    SchemaUtils.create(Users)
-
-                    val found = Users.select {
-                        Users.name eq name
-                    }.limit(1).count() > 0
-                    when (found) {
-                        true -> Response(OK).body("Boom! We found you: $name")
-                        false -> Response(NOT_FOUND).body("Sadly we could not find you: $name")
-                    }
-                }
+            else -> {
+                val userQueries = db.usersQueries
+                userQueries.selectByName(name = name).executeAsOneOrNull()?.let {
+                    Response(OK).body("Boom! We found you: $name")
+                } ?: Response(NOT_FOUND).body("Sadly we could not find you: $name")
+            }
         }
     }
 )
 
 fun main() {
     val port = (System.getenv("PORT") ?: "9000").toInt()
-    DbSettings.db.transactionManager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
 
-    val printingApp: HttpHandler = app
+    val driver: SqlDriver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
+    Database.Schema.create(driver)
+
+    val printingApp: HttpHandler = app(db = Database(driver))
     val server = printingApp.asServer(ApacheServer(port)).start()
 
     println(Runtime.getRuntime().availableProcessors())
