@@ -1,0 +1,73 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
+    }
+}
+
+apply plugin: 'application'
+
+mainClassName = "com.example.HelloWorldKt"
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    archiveBaseName.set(project.name)
+    archiveClassifier.set(null)
+    archiveVersion.set(null)
+    mergeServiceFiles()
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'kotlin'
+
+compileKotlin.kotlinOptions.jvmTarget = "11"
+compileTestKotlin.kotlinOptions.jvmTarget = "11"
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation "org.http4k:http4k-client-okhttp:${http4kVersion}"
+    implementation "org.http4k:http4k-core:${http4kVersion}"
+    implementation "org.http4k:http4k-format-kotlinx-serialization:${http4kVersion}"
+    implementation "org.http4k:http4k-server-apache:${http4kVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    testImplementation "org.http4k:http4k-testing-hamkrest:${http4kVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+
+    // SQLite
+    implementation "org.xerial:sqlite-jdbc:3.30.1"
+    implementation "org.jetbrains.exposed:exposed-core:$exposedVersion"
+    implementation "org.jetbrains.exposed:exposed-dao:$exposedVersion"
+    implementation "org.jetbrains.exposed:exposed-jdbc:$exposedVersion"
+    implementation "org.jetbrains.exposed:exposed:0.17.14"
+}
+
+task buildNativeImageDocker(type:Exec) {
+    commandLine "bash", "-c", "docker build . -t graal-native-image"
+}
+
+task nativeImageDocker(type:Exec) {
+    dependsOn "shadowJar"
+    commandLine "bash", "-c", "docker run --rm -v \$(pwd):/project graal-native-image --no-fallback -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar /project/build/libs/HelloWorld.jar /project/build/libs/HelloWorld-native"
+}
+
+task nativeImage(type:Exec) {
+    dependsOn "shadowJar"
+    commandLine "bash", "-c", "native-image --no-fallback -H:+ReportExceptionStackTraces --enable-url-protocols=https -jar build/libs/HelloWorld.jar build/libs/HelloWorld-native"
+}
