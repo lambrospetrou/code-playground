@@ -1,16 +1,16 @@
 .PHONY: bundle
 
-bundle: prepare_output_dir web
+bundle: prepare_output_dir build-app
 	cp fly.toml build/
 
 prepare_output_dir:
 	rm -rf build
 	mkdir -p build/bin
 
-web: prepare_output_dir
-	cd web; GOARCH=amd64 GOOS=linux go build -o web
-	mv web/web build/bin/
-	cp web/Dockerfile build/Dockerfile
+build-app: prepare_output_dir
+	cd app; GOARCH=amd64 GOOS=linux go build -o app
+	mv app/app build/bin/
+	cp app/Dockerfile build/Dockerfile
 
 docker-compose: bundle
 	docker-compose up
