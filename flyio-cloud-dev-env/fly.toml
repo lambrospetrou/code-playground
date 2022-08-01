@@ -1,0 +1,19 @@
+app = "<REPLACE_THIS_WITH_YOUR_FLYIO_APP_NAME>"
+
+[env]
+  HOME_SSH_AUTHORIZED_KEYS = '''
+'''
+
+[[mounts]]
+  # This is the persistent volume mount location, so if you change this
+  # you need to also change the Dockerfile and entrypoint.sh wherever "/data" is used.
+  destination = "/data"
+  source = "clouddevdata"
+
+[[services]]
+  internal_port = 22
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 10022
+
