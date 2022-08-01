@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euxo pipefail
 
 echo "Creating /run/sshd"
 mkdir -p /run/sshd
@@ -18,7 +18,7 @@ ssh-keygen -A -f /data
 echo "Setup SSH access for user $USER_ARG"
 mkdir -p $HOME_DIR/.ssh
 # Append the given keys to the authorised keys and only keep the uniques!
-echo "$HOME_SSH_AUTHORIZED_KEYS" >> $HOME_DIR/.ssh/authorized_keys
+echo -e "# empty comment\n$HOME_SSH_AUTHORIZED_KEYS" >> $HOME_DIR/.ssh/authorized_keys
 cat $HOME_DIR/.ssh/authorized_keys | sort | uniq | grep -v "^$" > /tmp/authorized_keys
 mv /tmp/authorized_keys $HOME_DIR/.ssh/authorized_keys
 
