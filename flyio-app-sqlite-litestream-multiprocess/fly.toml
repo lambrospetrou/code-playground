@@ -1,0 +1,25 @@
+app = "_This_will_replaced_by_flyctl_"
+
+[[mounts]]
+  destination = "/data"
+  source = "giteadata"
+
+[[services]]
+  internal_port = 22
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 22
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+    force_https = true
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
